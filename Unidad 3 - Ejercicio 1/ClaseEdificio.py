@@ -50,14 +50,13 @@ class Edificio:
     
     def getCantByH(self, pisoBuscado):
         i = 0
-        j = 0
         contador = 0
         while i < len(self.__lista_depto):
             if self.__lista_depto[i].getNum_piso() == pisoBuscado:
                     if self.__lista_depto[i].getCant_H() == 3 and self.__lista_depto[i].getCant_B() > 1:
                         contador += 1
-            else:
-                i += 1
+            i += 1
+            print(f"{i}")
         if contador == 0:
             aux = -1
         else:

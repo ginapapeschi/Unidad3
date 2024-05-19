@@ -12,7 +12,7 @@ def menu_opciones():
     (4) Ingresar el número de piso para mostrar la cantidad de departamentos que tienen 3 dormitorios y más de un baño.
     (0) SALIR DEL MENÚ
     Su opción --> '''))
-    except ValueError:
+    except ValueError:      # Ver esto
         pass
     return op
 

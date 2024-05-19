@@ -70,18 +70,15 @@ class GestorEdificio:
         assert band is False
                 
     def mostrarCantDeptosCondiciones(self, numPiso):
-        band = True
+        band = False
         i = 0
-        acum:float = 0
         contador = 0
         while i < len(self.__lista_edificio):
-            print(f"Entra while {i}")
             pisoDepto = self.__lista_edificio[i].getCantByH(numPiso)
             if pisoDepto != -1:
                 contador += 1
-            else:
-                i += 1
-        print(f"La cantidad de departamentos con 3 dormitorios y más de un baño son: {contador}.")
-        assert i is int
-        assert pisoDepto != -1
-        
+                band = True
+            i += 1
+        if band is True:
+            print(f"La cantidad de departamentos en el piso {numPiso} con 3 dormitorios y más de un baño son: {contador}.")
+        assert band is True
