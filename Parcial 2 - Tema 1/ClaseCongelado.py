@@ -23,8 +23,8 @@ class Congelado(Producto):
 
     def importeVenta(self):
         imp = super().getCosto()
-        if self.getMetodo == "mecanico":
+        if self.getMetodo() == "mecanico":
             imp += imp * 15 / 100
-        elif self.getMetodo == "criogenico":
+        elif self.getMetodo() == "criogenico":
             imp += imp * 10 / 100
         return imp
