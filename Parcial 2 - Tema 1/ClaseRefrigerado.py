@@ -14,5 +14,21 @@ class Refrigerado(Producto):
         return self.__codigo
     
     def importeVenta(self):
-        pass
+        fecha_vencimiento = self.getFechaVenc().split('/')
+        fecha_actual = "01/06/2024".split('/')  # Suponiendo que la fecha actual es 01/06/2024 para esta implementación.
 
+        anio_vencimiento = int(fecha_vencimiento[2])    # Particiona la fecha en un arreglo de 3 posiciones, tomando la tercera ([2]) como año y la segunda ([1]) como el mes.
+        mes_vencimiento = int(fecha_vencimiento[1])
+
+        anio_actual = int(fecha_actual[2])              # Realiza lo mismo con la fecha de vencimiento.
+        mes_actual = int(fecha_actual[1])
+
+        # Calcular la diferencia en meses
+        meses_diferencia = (anio_vencimiento - anio_actual) * 12 + (mes_vencimiento - mes_actual)
+
+        imp = super().getCosto()
+        if meses_diferencia <= 2:
+            imp -= imp * 10 / 100
+        else: 
+            imp += imp * 1 / 100
+        return imp
