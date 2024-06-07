@@ -22,4 +22,7 @@ class Maquinaria(Equipo):
             imp = imp * cantDias
         elif self.getPeso() > 10:
             imp = imp * cantDias + (cantDias * 20 / 100)
-        return imp
+        return round(imp, 2)
+
+    def __str__ (self):
+        return f"Marca: {super().getMarca()}\nModelo: {super().getModelo()}\nAño de fabricación: {super().getAnio()}\nTipo de combustible: {super().getTipoCombustible()}\nPotencia: {super().getPotencia()}\nCapacidad de carga: {super().getCapacidadCarga()}"

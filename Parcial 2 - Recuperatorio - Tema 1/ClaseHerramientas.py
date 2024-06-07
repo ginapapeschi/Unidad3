@@ -17,4 +17,7 @@ class Herramienta(Equipo):
             imp = imp * cantDias + (cantDias * 10 / 100)
         elif self.getHerramienta() == "cable":
             imp = imp * cantDias
-        return imp
+        return round(imp, 2)
+    
+    def __str__ (self):
+        return f"Marca: {super().getMarca()}\nModelo: {super().getModelo()}\nAño de fabricación: {super().getAnio()}\nTipo de combustible: {super().getTipoCombustible()}\nPotencia: {super().getPotencia()}\nCapacidad de carga: {super().getCapacidadCarga()}"

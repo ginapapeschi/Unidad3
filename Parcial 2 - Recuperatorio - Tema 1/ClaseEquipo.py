@@ -21,7 +21,6 @@ class Equipo(ABC):
         self.__tarifaAlquiler = tarifa
         self.__cantDiasAlq = cant
         
-
     def getMarca(self):
         return self.__marca
     
@@ -46,6 +45,9 @@ class Equipo(ABC):
     def getCantDiasAlq(self):
         return self.__cantDiasAlq
     
+    def __str__ (self):
+        return f"Marca: {self.__marca}\nModelo: {self.__modelo}\nAño de fabricación: {self.__anio}\nTipo de combustible: {self.__tipoCombustible}\nPotencia: {self.__potencia}\nCapacidad de carga: {self.__capacidadCarga}"
+
     @abc.abstractmethod
     def getTarifaAlquiler(self):
         pass

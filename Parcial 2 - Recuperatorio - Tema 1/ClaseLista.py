@@ -41,6 +41,8 @@ class Lista:
         self.__tope += 1
         
     def cargarEquipo(self):
+        band1 = False
+        band2 = False
         archivo = open("equipos.csv")
         reader = csv.reader(archivo, delimiter = ";")
         next(reader)
@@ -48,12 +50,15 @@ class Lista:
             if fila[0] == "M":
                 maquinaria = (Maquinaria(fila[1], fila[2], int(fila[3]), fila[4], fila[5], fila[6], int(fila[7]), int(fila[8]), fila[9], int(fila[10])))
                 self.agregarEquipo(maquinaria)
-
-            if fila[0] == "E":
+                print("Maquinaria cargada exitosamente.")
+                band1 = True
+            elif fila[0] == "E":
                 herramienta = (Herramienta(fila[1], fila[2], int(fila[3]), fila[4], fila[5], fila[6], int(fila[7]), int(fila[8]), fila[9]))
                 self.agregarEquipo(herramienta)
-            else:
-                print("\nNo existe el archivo.")
+                print("Herramienta cargada exitosamente.")
+                band2 = True
+        if band1 and band2:
+            print("\nArchivo cargado exitosamente.")
         archivo.close()
 
     def mostrarEquipoPos(self, pos):
@@ -62,9 +67,11 @@ class Lista:
             for i in range(pos):
                 aux = aux.getSiguiente()
             if isinstance(aux.getDato(), Herramienta):
-                print(f"El tipo de equipo en la posición {pos} es del tipo Herramienta.")
+                print(f"El tipo de equipo en la posición {pos + 1} es del tipo Herramienta.")
             elif isinstance(aux.getDato(), Maquinaria):
-                print(f"El tipo de equipo en la posición {pos} es del tipo Maquinaria.")
+                print(f"El tipo de equipo en la posición {pos + 1} es del tipo Maquinaria.")
+        else:
+            raise IndexError("\nERROR - Índice fuera de rango.")
 
     def mostrarCantHerramientasFabricadas(self, anio):
         cont = 0
@@ -79,14 +86,18 @@ class Lista:
         cont = 0
         aux = self.__comienzo
         while aux is not None:
-            if isinstance(aux.getDato(), Maquinaria) and aux.getDato().getCapacidadCarga() <= capacidad:
-                cont += 1
+            if isinstance(aux.getDato(), Maquinaria) and aux.getDato().getCapacidadCarga() != "N/A":
+                if int(aux.getDato().getCapacidadCarga()) <= capacidad:
+                    cont += 1
             aux = aux.getSiguiente()
-        print(f"Hay {cont} maquinarias capaces de cargar {capacidad}.")
+        if cont == 1:
+            print(f"Hay {cont} maquinaria capaz de cargar {capacidad} toneladas.")
+        elif cont != 0:
+            print(f"Hay {cont} maquinarias capaces de cargar {capacidad} toneladas.")
     
     def mostrarEquipos(self):        
         aux = self.__comienzo
-        while aux is not None:
-            importe = aux.getDato().getTarifaAlquiler()
-            print(f"Marca: {aux.getDato().getMarca()}\n Modelo: {aux.getDato().getModelo()}\nAño de fabricación: {aux.getDato().getAnio()}\nTipo de combustible: {aux.getDato().getTipoCombustible()}\nPotencia: {aux.getDato().getPotencia()}\nCapacidad de carga: {aux.getDato().getCapacidadCarga()}\nTipo de alquiler: {round(importe, 2)}")
-
+        for aux in self:
+            print("")
+            print(aux)
+            print(f"Tarifa de alquiler: ${aux.getTarifaAlquiler():.2f}")
