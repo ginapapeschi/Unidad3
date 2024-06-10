@@ -46,5 +46,5 @@ class Equipo(ABC):
         return self.__cantDiasAlq
     
     @abc.abstractmethod
-    def getTarifaAlquiler(self):
+    def calcularTarifaAlquiler(self):
         pass

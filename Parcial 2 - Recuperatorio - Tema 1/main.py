@@ -56,6 +56,6 @@ if __name__ == '__main__':
             gestor.mostrarEquipos()
 
         elif opcion not in range (5):
-            print("ERROR - OPCIÓN INVÁLIDA")
+            print("\nERROR - OPCIÓN INVÁLIDA")
             
         opcion = menu()

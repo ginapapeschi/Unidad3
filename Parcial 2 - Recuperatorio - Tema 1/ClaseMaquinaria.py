@@ -15,7 +15,7 @@ class Maquinaria(Equipo):
     def getPeso(self):
         return self.__peso
     
-    def getTarifaAlquiler(self):
+    def calcularTarifaAlquiler(self):
         imp = super().getTarifaAlq()
         cantDias= super().getCantDiasAlq()
         if self.getPeso() <= 10:

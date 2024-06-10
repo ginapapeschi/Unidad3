@@ -10,7 +10,7 @@ class Herramienta(Equipo):
     def getHerramienta(self):
         return self.__herramienta
 
-    def getTarifaAlquiler(self):
+    def calcularTarifaAlquiler(self):
         imp = super().getTarifaAlq()
         cantDias= super().getCantDiasAlq()
         if self.getHerramienta() == "bateria":

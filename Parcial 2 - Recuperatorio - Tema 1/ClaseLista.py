@@ -80,13 +80,13 @@ class Lista:
             if isinstance(aux.getDato(), Herramienta) and aux.getDato().getAnio() == anio:
                 cont += 1
             aux = aux.getSiguiente()
-        print(f"Hay {cont} herramientas fabricadas en el año {anio}.")
+        print(f"Hay {cont} herramientas eléctricas fabricadas en el año {anio}.")
         
     def mostrarCantMaquinariasCapacidad(self, capacidad):
         cont = 0
         aux = self.__comienzo
         while aux is not None:
-            if isinstance(aux.getDato(), Maquinaria) and aux.getDato().getCapacidadCarga() != "N/A":
+            if isinstance(aux.getDato(), Maquinaria):
                 if int(aux.getDato().getCapacidadCarga()) <= capacidad:
                     cont += 1
             aux = aux.getSiguiente()
@@ -100,4 +100,4 @@ class Lista:
         for aux in self:
             print("")
             print(aux)
-            print(f"Tarifa de alquiler: ${aux.getTarifaAlquiler():.2f}")
+            print(f"Tarifa de alquiler: ${aux.calcularTarifaAlquiler():.2f}")
